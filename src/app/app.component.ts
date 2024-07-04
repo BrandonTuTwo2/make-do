@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-require("dotenv").config();
-
-
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -13,6 +10,14 @@ require("dotenv").config();
 })
 export class AppComponent {
   title = 'make-do';
-  envTest = process.env["TEST"] || 'not working :(';
-
 }
+
+console.log("HI where is this");
+const testHi = async() => {
+  const res = await fetch('/api/hello');
+  console.log(res)
+  const resTest = await res.json();
+  console.log(resTest);
+}
+
+testHi();
