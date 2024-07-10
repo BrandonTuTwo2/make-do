@@ -1,0 +1,26 @@
+input[type="text"] {
+  border: solid 1px black;
+  padding: 10px;
+  border-radius: 8px;
+  margin-right: 4px;
+  display: inline-block;
+  width: 30%;
+}
+
+button {
+  padding: 10px;
+  border: solid 1px black;
+  background: black;
+  color: white;
+  border-radius: 8px;
+}
+
+main {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+#displaySection {
+  display: inline-flex;
+}

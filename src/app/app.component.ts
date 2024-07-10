@@ -6,18 +6,18 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'make-do';
+  title = 'Make Do';
 }
 
-console.log("HI where is this");
-const testHi = async() => {
+console.log('Hello where is this');
+const testHi = async () => {
   const res = await fetch('/api/hello');
-  console.log(res)
+  console.log(res);
   const resTest = await res.json();
   console.log(resTest);
-}
+};
 
-testHi();
+//testHi();
