@@ -14,7 +14,7 @@ router.get("/hello", (req, res) => {
 })});
 
 
-router.get("/cocktailSearch", (req,res) =>{
+router.post("/cocktailSearch", (req,res) =>{
     console.log("HERE IS REQ");
     console.log(JSON.parse(req.body));
     console.log(process.env["API_KEY"]);
