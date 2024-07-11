@@ -6,15 +6,36 @@
         type="text"
         placeholder="input ingredient to save"
         id="searchbar"
+        [formControl]="ingredientFormController"
       />
-      <button class="primary" type="button" id="addIngredient">Add</button>
+      <button
+        class="primary"
+        type="button"
+        id="addIngredient"
+        (click)="addToCurIngredientsList()"
+        clickable
+      >
+        Add
+      </button>
     </form>
-    <button class="primary" type="button" id="searchDrinks">Search</button>
   </section>
   <div id="displaySection">
     <section id="addedIngredientsSection">
       <h2>With the following...</h2>
+      <ul>
+        <li *ngFor="let item of curIngredientList">
+          <a href="#">{{ item }}</a>
+        </li>
+      </ul>
     </section>
+    <button
+      class="primary"
+      type="button"
+      id="searchDrinks"
+      (click)="searchCocktail()"
+    >
+      Search
+    </button>
     <section id="possibleDrinksSection">
       <h2>You can Make...</h2>
     </section>

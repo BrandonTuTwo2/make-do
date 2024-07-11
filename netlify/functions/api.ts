@@ -14,5 +14,15 @@ router.get("/hello", (req, res) => {
 })});
 
 
+router.get("/cocktailSearch", (req,res) =>{
+    console.log("HERE IS REQ");
+    console.log(JSON.parse(req.body));
+    console.log(process.env["API_KEY"]);
+    console.log("HI ME")
+    res.send({
+    hi: "Mom"
+})});
+
+
 api.use("/api/", router);
 export const handler = serverless(api);
