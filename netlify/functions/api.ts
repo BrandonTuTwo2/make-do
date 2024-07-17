@@ -14,13 +14,24 @@ router.get("/hello", (req, res) => {
 })});
 
 
-router.post("/cocktailSearch", (req,res) =>{
-    console.log("HERE IS REQ");
-    console.log(JSON.parse(req.body));
-    console.log(process.env["API_KEY"]);
-    console.log("HI ME")
+router.post("/cocktailSearch", async (req,res) =>{
+    //console.log("HERE IS REQ");
+    const ingrdList = JSON.parse(req.body)
+    //console.log(ingrdList.ingredientList.toString());
+    //This is will search for all cocktails with the following ingredients
+    //We could maybe instead do a search for just drinks that contain not only those ingredients
+    const cocktailsRaw = await fetch(
+        `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingrdList.ingredientList.toString()}`,{
+            headers: {
+                "X-Api-Key": `${process.env["API_KEY"]}`
+            }
+        }
+    )
+
+    const cocktails = await cocktailsRaw.json();
+    console.log(cocktails);
     res.send({
-    hi: "Mom"
+        body: JSON.stringify(cocktails),
 })});
 
 
