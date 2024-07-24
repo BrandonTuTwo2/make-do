@@ -53,3 +53,14 @@
 --destructive-foreground: 210 40% 98%;
 --ring: 212.7 26.8% 83.9;
 }
+
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+body main {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../public/va11hallaBG.png")
+}

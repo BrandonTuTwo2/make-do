@@ -7,6 +7,7 @@
         placeholder="input ingredient to save"
         id="searchbar"
         [formControl]="ingredientFormController"
+        hlmInput
       />
       <button
         class="primary"
@@ -14,6 +15,7 @@
         id="addIngredient"
         (click)="addToCurIngredientsList()"
         clickable
+        hlmBtn
       >
         Add
       </button>
@@ -22,26 +24,34 @@
   </section>
   <div id="displaySection">
     <section id="addedIngredientsSection">
-      <h2>With the following...</h2>
-      <ul>
-        <li *ngFor="let item of curIngredientList">
-          <a href="#">{{ item }}</a>
-        </li>
-      </ul>
+      <h2 class="text-slate-50">With the following...</h2>
+      <hlm-table>
+        <hlm-caption>Added ingredients so far</hlm-caption>
+        <hlm-trow>
+          <hlm-th class="text-green-500">Name</hlm-th>
+        </hlm-trow>
+        @for (item of curIngredientList; track item) {
+          <hlm-trow>
+            <hlm-td class="text-white w-80	">{{ item }}</hlm-td>
+            <hlm-td class="justify-end w-40"><button hlmBtn variant='link' class="text-white">remove</button></hlm-td>
+          </hlm-trow>
+        }
+      </hlm-table>
     </section>
     <button
       class="primary"
       type="button"
       id="searchDrinks"
       (click)="searchCocktail()"
+      hlmBtn
     >
       Search
     </button>
     <section id="possibleDrinksSection">
-      <h2>You can Make...</h2>
+      <h2 class="text-slate-50">You can Make...</h2>
       <ul>
         <li *ngFor="let item of curCockTailList">
-          <a href="#">{{ item.name }}</a>
+          <a href="#" class="text-slate-50">{{ item.name }}</a>
         </li>
       </ul>
     </section>

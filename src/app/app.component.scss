@@ -5,15 +5,7 @@ input[type="text"] {
   margin-right: 4px;
   display: inline-block;
   width: 30%;
-}
-
-button {
-  padding: 10px;
-  border: solid 1px black;
-  background: black;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
+  background-color: white;
 }
 
 main {
@@ -23,8 +15,14 @@ main {
 }
 
 #displaySection {
-  position: relative;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  color: green;
+  background-color: seashell;
 }
 
 #addedIngredientsSection,
@@ -33,9 +31,6 @@ main {
   display: inline-block;
   margin-top: 100px;
   width: 500px;
-}
-
-#addedIngredientsSection {
 }
 
 #searchDrinks {

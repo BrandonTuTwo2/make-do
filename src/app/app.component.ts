@@ -3,12 +3,14 @@ import { RouterOutlet } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+import { HlmCaptionComponent, HlmTableComponent, HlmTdComponent, HlmThComponent, HlmTrowComponent } from '@spartan-ng/ui-table-helm';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ReactiveFormsModule, CommonModule, HlmButtonDirective],
+  imports: [RouterOutlet, ReactiveFormsModule, CommonModule, HlmButtonDirective, HlmInputDirective, HlmTableComponent,HlmTdComponent,HlmThComponent,HlmTrowComponent,HlmCaptionComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
