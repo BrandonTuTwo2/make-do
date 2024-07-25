@@ -10,7 +10,7 @@
         hlmInput
       />
       <button
-        class="primary"
+        class="primary btnDef"
         type="button"
         id="addIngredient"
         (click)="addToCurIngredientsList()"
@@ -19,27 +19,23 @@
       >
         Add
       </button>
-      <button hlmBtn>Button</button>
     </form>
   </section>
   <div id="displaySection">
-    <section id="addedIngredientsSection">
-      <h2 class="text-slate-50">With the following...</h2>
+    <section id="addedIngredientsSection" class="rounded-lg">
+      <h2 class="text-lg">Ingredients</h2>
       <hlm-table>
-        <hlm-caption>Added ingredients so far</hlm-caption>
-        <hlm-trow>
-          <hlm-th class="text-green-500">Name</hlm-th>
-        </hlm-trow>
+        <hlm-caption>make sure you spelled it correctly</hlm-caption>
         @for (item of curIngredientList; track item) {
-          <hlm-trow>
-            <hlm-td class="text-white w-80	">{{ item }}</hlm-td>
-            <hlm-td class="justify-end w-40"><button hlmBtn variant='link' class="text-white">remove</button></hlm-td>
+          <hlm-trow class="border-black	border-dotted">
+            <hlm-td class=" w-80">{{ item }}</hlm-td>
+            <hlm-td class="justify-end w-40"><button hlmBtn variant='link'  (click)="removeItem(item)">remove</button></hlm-td>
           </hlm-trow>
         }
       </hlm-table>
     </section>
     <button
-      class="primary"
+      class="primary btnDef"
       type="button"
       id="searchDrinks"
       (click)="searchCocktail()"
@@ -47,13 +43,19 @@
     >
       Search
     </button>
-    <section id="possibleDrinksSection">
-      <h2 class="text-slate-50">You can Make...</h2>
-      <ul>
-        <li *ngFor="let item of curCockTailList">
-          <a href="#" class="text-slate-50">{{ item.name }}</a>
-        </li>
-      </ul>
+    <section id="possibleDrinksSection" class="rounded-lg">
+      <h2 class="text-lg">Cocktails</h2>
+      <div hlmAccordion>
+        @for (item of curCockTailList; track item) {
+          <div hlmAccordionItem>
+            <button hlmAccordionTrigger>
+                {{item.name}}
+                <hlm-icon hlmAccIcon />
+            </button>
+            <brn-accordion-content hlm>{{item.instructions}}</brn-accordion-content>
+        </div>
+        }
+      </div>
     </section>
   </div>
 </main>
