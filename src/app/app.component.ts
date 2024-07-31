@@ -2,17 +2,17 @@ import { Component, ElementRef, ViewChild, viewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+import { HlmButtonDirective } from '../../components/ui-button-helm/src';
+import { HlmInputDirective } from '../../components/ui-input-helm/src';
 import { toast } from 'ngx-sonner';
-import { HlmToasterComponent } from '@spartan-ng/ui-sonner-helm';
+import { HlmToasterComponent } from '../../components/ui-sonner-helm/src';
 import {
   HlmCaptionComponent,
   HlmTableComponent,
   HlmTdComponent,
   HlmThComponent,
   HlmTrowComponent,
-} from '@spartan-ng/ui-table-helm';
+} from '../../components/ui-table-helm/src';
 import { BrnAccordionContentComponent } from '@spartan-ng/ui-accordion-brain';
 import {
   HlmAccordionContentDirective,
@@ -20,9 +20,9 @@ import {
   HlmAccordionIconDirective,
   HlmAccordionItemDirective,
   HlmAccordionTriggerDirective,
-} from '@spartan-ng/ui-accordion-helm';
-import { HlmIconComponent } from '@spartan-ng/ui-icon-helm';
-import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
+} from '../../components/ui-accordion-helm/src';
+import { HlmIconComponent } from '../../components/ui-icon-helm/src';
+import { HlmSpinnerComponent } from '../../components/ui-spinner-helm/src';
 
 @Component({
   selector: 'app-root',
