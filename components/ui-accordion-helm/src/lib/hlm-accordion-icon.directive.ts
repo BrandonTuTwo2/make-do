@@ -1,7 +1,7 @@
 import { Directive, computed, inject, input } from '@angular/core';
 import { lucideChevronDown } from '@ng-icons/lucide';
 import { hlm } from '@spartan-ng/ui-core';
-import { HlmIconComponent, provideIcons } from '@spartan-ng/ui-icon-helm';
+import { HlmIconComponent, provideIcons } from '../../../ui-icon-helm/src';
 import type { ClassValue } from 'clsx';
 
 @Directive({
