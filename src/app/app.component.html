@@ -1,5 +1,6 @@
 <main class="main">
-  <h1>Make do with what you got</h1>
+  <h1 class="text-stone-300	">Make do with what you got</h1>
+  <hlm-toaster />
   <section id="addIngredientSection">
     <form>
       <input
@@ -35,7 +36,7 @@
       </hlm-table>
     </section>
     <button
-      class="primary btnDef"
+      class="primary btnDef mt-10"
       type="button"
       id="searchDrinks"
       (click)="searchCocktail()"
@@ -45,6 +46,9 @@
     </button>
     <section id="possibleDrinksSection" class="rounded-lg">
       <h2 class="text-lg">Cocktails</h2>
+      <div #spinner style="display: none;">
+        <hlm-spinner />
+      </div>
       <div hlmAccordion>
         @for (item of curCockTailList; track item) {
           <div hlmAccordionItem>
@@ -52,12 +56,22 @@
                 {{item.name}}
                 <hlm-icon hlmAccIcon />
             </button>
-            <brn-accordion-content hlm>{{item.instructions}}</brn-accordion-content>
+            <brn-accordion-content hlm>
+              <p class="font-semibold"> {{item.name}} Ingredients</p>
+              <ul>
+                @for (ingr of item.ingredients; track ingr) {
+                  <li>{{ingr}}</li>
+                }
+              </ul>
+              <p class="mt-6 font-semibold">Instructions</p>
+              {{item.instructions}}
+            </brn-accordion-content>
         </div>
         }
       </div>
     </section>
   </div>
+
 </main>
 
 <router-outlet />

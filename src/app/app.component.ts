@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild, viewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+import { toast } from 'ngx-sonner';
+import { HlmToasterComponent } from '@spartan-ng/ui-sonner-helm';
 import {
   HlmCaptionComponent,
   HlmTableComponent,
@@ -20,6 +22,7 @@ import {
   HlmAccordionTriggerDirective,
 } from '@spartan-ng/ui-accordion-helm';
 import { HlmIconComponent } from '@spartan-ng/ui-icon-helm';
+import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
 
 @Component({
   selector: 'app-root',
@@ -42,6 +45,8 @@ import { HlmIconComponent } from '@spartan-ng/ui-icon-helm';
     HlmAccordionContentDirective,
     HlmAccordionIconDirective,
     HlmIconComponent,
+    HlmSpinnerComponent,
+    HlmToasterComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -51,6 +56,9 @@ export class AppComponent {
   curIngredientList: string[] = [];
   ingredientFormController = new FormControl('');
   curCockTailList: cocktail[] = [];
+  @ViewChild('spinner')
+  spinner!: ElementRef;
+
   addToCurIngredientsList = () => {
     const formVal = this.ingredientFormController.getRawValue();
 
@@ -58,11 +66,11 @@ export class AppComponent {
       this.curIngredientList.push(formVal);
       this.ingredientFormController.setValue('');
       console.log(this.curIngredientList);
+    } else {
+      toast("You didn't input an ingredient!");
     }
 
-    if (checkCookie() === null) {
-      console.log('does not exists');
-    } else {
+    if (checkCookie() !== null) {
       console.log(
         'create and save item to cookie or maybe make this into a separate function'
       );
@@ -80,19 +88,20 @@ export class AppComponent {
   };
 
   searchCocktail = async () => {
-    console.log('placeholder');
     if (
       this.curIngredientList === undefined ||
       this.curIngredientList.length === 0
     ) {
-      console.log('Add code to alert the user!!!');
+      toast("Ingredients list is empty");
     } else {
+      this.spinner.nativeElement.style.setProperty("display","block");
       const response = await fetch('/api/cocktailSearch', {
         method: 'POST',
         body: JSON.stringify({ ingredientList: this.curIngredientList }),
       });
 
       const resCocktail = await response.json();
+      this.spinner.nativeElement.style.setProperty("display","none");
       this.curCockTailList = JSON.parse(resCocktail.body);
       console.log(this.curCockTailList);
     }
@@ -105,14 +114,6 @@ export interface cocktail {
   name: string;
 }
 
-const testHi = async () => {
-  const res = await fetch('/api/hello');
-  console.log(res);
-  const resTest = await res.json();
-  console.log(resTest);
-};
-
 const checkCookie = () => {
   return document.cookie.match(/^(.*;)?\s*ingredientList\s*=\s*[^;]+(.*)?$/);
 };
-//testHi();

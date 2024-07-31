@@ -29,11 +29,13 @@ main {
 #possibleDrinksSection {
   border: solid 1px black;
   display: inline-block;
-  margin-top: 100px;
+  margin-top: 25px;
   width: 500px;
+  height: auto;
   background-color: bisque;
 }
 
 #searchDrinks {
   margin: 0 100px;
+  margin-top: 25px;
 }

@@ -48,6 +48,9 @@
       ],
       "@spartan-ng/ui-table-helm": [
         ".\\components/ui-table-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-sonner-helm": [
+        ".\\components/ui-sonner-helm/src/index.ts"
       ]
     }
   },

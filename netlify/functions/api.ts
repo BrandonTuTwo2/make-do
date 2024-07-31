@@ -6,18 +6,8 @@ require("dotenv").config();
 const api = express();
 const router = Router();
 
-router.get("/hello", (req, res) => {
-    console.log(process.env["TEST"]);
-    console.log("HI ME")
-    res.send({
-    hi: "Mom"
-})});
-
-
 router.post("/cocktailSearch", async (req,res) =>{
-    //console.log("HERE IS REQ");
     const ingrdList = JSON.parse(req.body)
-    //console.log(ingrdList.ingredientList.toString());
     //This is will search for all cocktails with the following ingredients
     //We could maybe instead do a search for just drinks that contain not only those ingredients
     const cocktailsRaw = await fetch(
