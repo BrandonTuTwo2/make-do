@@ -59,22 +59,57 @@ export class AppComponent {
   @ViewChild('spinner')
   spinner!: ElementRef;
 
-  addToCurIngredientsList = () => {
+  ngOnInit() {
+      if (typeof document !== 'undefined'){
+        if(this.checkCookie()) {
+            const value  = "; " + document.cookie;
+            const parts = value.split("; ingrList=");
+            console.log(parts);
+            if (parts.length == 2) {
+              const cookieValRaw = parts.pop();
+              const cookieVal = cookieValRaw?.split(",") ?? [];
+              this.curIngredientList = cookieVal;
+            }
+      }
+    }
+  }
+
+  checkCookie = () => {
+    return (document.cookie.match(/^(.*;)?\s*ingrList\s*=\s*[^;]+(.*)?$/) !== null);
+  };
+
+  addToCurIngredientsList = (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
     const formVal = this.ingredientFormController.getRawValue();
 
     if (formVal && formVal?.length > 0) {
       this.curIngredientList.push(formVal);
       this.ingredientFormController.setValue('');
       console.log(this.curIngredientList);
+
+      if (typeof document !== 'undefined'){
+        if(this.checkCookie()) {
+          const value  = "; " + document.cookie;
+          const parts = value.split("; ingrList=");
+          console.log(parts);
+          if (parts.length == 2) {
+            const cookieValRaw = parts.pop();
+            const cookieVal = cookieValRaw?.split(",") ?? [];
+            cookieVal.push(formVal);
+            const saveCookieVal = cookieVal.toString()
+            document.cookie = "ingrList="+saveCookieVal+";"
+          }
+
+        } else {
+          console.log("adding cookie");
+          document.cookie = "ingrList="+formVal+";"
+        }
+      }
     } else {
       toast("You didn't input an ingredient!");
     }
 
-    if (checkCookie() !== null) {
-      console.log(
-        'create and save item to cookie or maybe make this into a separate function'
-      );
-    }
+
   };
 
   removeItem = (ingr: string) => {
@@ -83,6 +118,20 @@ export class AppComponent {
     const index = this.curIngredientList.indexOf(ingr);
     if (index > -1) {
       this.curIngredientList.splice(index, 1);
+      if (typeof document !== 'undefined'){
+        if(this.checkCookie()) {
+            const value  = "; " + document.cookie;
+            const parts = value.split("; ingrList=");
+            console.log(parts);
+            if (parts.length == 2) {
+              const cookieValRaw = parts.pop();
+              const cookieVal = cookieValRaw?.split(",") ?? [];
+              cookieVal.splice(index,1);
+              const saveCookieVal = cookieVal.toString()
+              document.cookie = "ingrList="+saveCookieVal+";"
+            }
+      }
+    }
     }
     console.log(this.curIngredientList);
   };
@@ -114,6 +163,4 @@ export interface cocktail {
   name: string;
 }
 
-const checkCookie = () => {
-  return document.cookie.match(/^(.*;)?\s*ingredientList\s*=\s*[^;]+(.*)?$/);
-};
+

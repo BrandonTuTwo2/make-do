@@ -8,13 +8,14 @@
         placeholder="input ingredient to save"
         id="searchbar"
         [formControl]="ingredientFormController"
+        (keydown.enter)="addToCurIngredientsList($event)"
         hlmInput
       />
       <button
         class="primary btnDef"
         type="button"
         id="addIngredient"
-        (click)="addToCurIngredientsList()"
+        (click)="addToCurIngredientsList($event)"
         clickable
         hlmBtn
       >
@@ -24,11 +25,11 @@
   </section>
   <div id="displaySection">
     <section id="addedIngredientsSection" class="rounded-lg">
-      <h2 class="text-lg">Ingredients</h2>
+      <h2 class="text-lg title">Ingredients</h2>
       <hlm-table>
         <hlm-caption>make sure you spelled it correctly</hlm-caption>
         @for (item of curIngredientList; track item) {
-          <hlm-trow class="border-black	border-dotted">
+          <hlm-trow class="border-black	border-dotted menuText">
             <hlm-td class=" w-80">{{ item }}</hlm-td>
             <hlm-td class="justify-end w-40"><button hlmBtn variant='link'  (click)="removeItem(item)">remove</button></hlm-td>
           </hlm-trow>
@@ -45,13 +46,13 @@
       Search
     </button>
     <section id="possibleDrinksSection" class="rounded-lg">
-      <h2 class="text-lg">Cocktails</h2>
+      <h2 class="text-lg title">Cocktails</h2>
       <div #spinner style="display: none;">
         <hlm-spinner />
       </div>
       <div hlmAccordion>
         @for (item of curCockTailList; track item) {
-          <div hlmAccordionItem>
+          <div hlmAccordionItem class="menuText">
             <button hlmAccordionTrigger>
                 {{item.name}}
                 <hlm-icon hlmAccIcon />

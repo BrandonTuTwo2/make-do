@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Playfair+Display:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Playfair+Display:ital@0;1&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
 input[type="text"] {
   border: solid 1px black;
   padding: 10px;
@@ -23,6 +26,18 @@ main {
 .btnDef {
   color: green;
   background-color: seashell;
+}
+
+.title {
+  font-family: "Merienda", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.menuText {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 #addedIngredientsSection,
