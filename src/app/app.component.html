@@ -1,8 +1,8 @@
 <main class="main">
-  <h1 class="text-stone-300	">Make do with what you got</h1>
+  <h1 class="text-stone-300 menuText">Make do with what you got</h1>
   <hlm-toaster />
   <section id="addIngredientSection">
-    <form>
+    <form class="my-2">
       <input
         type="text"
         placeholder="input ingredient to save"
@@ -22,6 +22,47 @@
         Add
       </button>
     </form>
+    <hlm-alert-dialog>
+      <button
+        brnAlertDialogTrigger
+        hlmBtn
+        type="button"
+        class="hover:bg-zinc-50 hover:text-white font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500"
+      >
+        <svg
+          class="h-5 w-5 text-slate-500 inline"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="16" x2="12" y2="12" />
+          <line x1="12" y1="8" x2="12.01" y2="8" />
+        </svg>
+      </button>
+      <hlm-alert-dialog-content *brnAlertDialogContent="let ctx">
+        <hlm-alert-dialog-header>
+          <h3 hlmAlertDialogTitle class="text-center">Heres how this works</h3>
+          <p hlmAlertDialogDescription>
+            <li>
+              You search up cocktails by entering in the ingredients it can
+              contain (be wary of spelling!)
+            </li>
+            <li>
+              Note that it will only show cocktails that contains all of the
+              ingredients you specify
+            </li>
+            <li>It will always show a max of 10 cocktails</li>
+          </p>
+        </hlm-alert-dialog-header>
+        <hlm-alert-dialog-footer>
+          <button hlmAlertDialogAction (click)="ctx.close()">Got it</button>
+        </hlm-alert-dialog-footer>
+      </hlm-alert-dialog-content>
+    </hlm-alert-dialog>
   </section>
   <div id="displaySection">
     <section id="addedIngredientsSection" class="rounded-lg">
@@ -29,10 +70,14 @@
       <hlm-table>
         <hlm-caption>make sure you spelled it correctly</hlm-caption>
         @for (item of curIngredientList; track item) {
-          <hlm-trow class="border-black	border-dotted menuText">
-            <hlm-td class=" w-80">{{ item }}</hlm-td>
-            <hlm-td class="justify-end w-40"><button hlmBtn variant='link'  (click)="removeItem(item)">remove</button></hlm-td>
-          </hlm-trow>
+        <hlm-trow class="border-black border-dotted menuText">
+          <hlm-td class="w-80">{{ item }}</hlm-td>
+          <hlm-td class="justify-end w-40"
+            ><button hlmBtn variant="link" (click)="removeItem(item)">
+              remove
+            </button></hlm-td
+          >
+        </hlm-trow>
         }
       </hlm-table>
     </section>
@@ -47,32 +92,31 @@
     </button>
     <section id="possibleDrinksSection" class="rounded-lg">
       <h2 class="text-lg title">Cocktails</h2>
-      <div #spinner style="display: none;">
+      <div #spinner style="display: none">
         <hlm-spinner />
       </div>
       <div hlmAccordion>
         @for (item of curCockTailList; track item) {
-          <div hlmAccordionItem class="menuText">
-            <button hlmAccordionTrigger>
-                {{item.name}}
-                <hlm-icon hlmAccIcon />
-            </button>
-            <brn-accordion-content hlm>
-              <p class="font-semibold"> {{item.name}} Ingredients</p>
-              <ul>
-                @for (ingr of item.ingredients; track ingr) {
-                  <li>{{ingr}}</li>
-                }
-              </ul>
-              <p class="mt-6 font-semibold">Instructions</p>
-              {{item.instructions}}
-            </brn-accordion-content>
+        <div hlmAccordionItem class="menuText">
+          <button hlmAccordionTrigger>
+            {{ item.name }}
+            <hlm-icon hlmAccIcon />
+          </button>
+          <brn-accordion-content hlm>
+            <p class="font-semibold">{{ item.name }} Ingredients</p>
+            <ul>
+              @for (ingr of item.ingredients; track ingr) {
+              <li>{{ ingr }}</li>
+              }
+            </ul>
+            <p class="mt-6 font-semibold">Instructions</p>
+            {{ item.instructions }}
+          </brn-accordion-content>
         </div>
         }
       </div>
     </section>
   </div>
-
 </main>
 
 <router-outlet />
